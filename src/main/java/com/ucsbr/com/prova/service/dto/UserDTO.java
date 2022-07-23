@@ -7,10 +7,13 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+@SuppressWarnings("serial")
 @Data
 public class UserDTO implements Serializable {
 
-  private static final Long serialVersionUID = 1L;
+
+@SuppressWarnings("unused")
+private static final Long serialVersionUID = 1L;
 
   @ApiModelProperty(value = "Código do usuário", example = "1")
   private Long id;

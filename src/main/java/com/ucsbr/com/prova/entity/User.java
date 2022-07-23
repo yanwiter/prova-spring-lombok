@@ -4,11 +4,13 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+@SuppressWarnings("serial")
 @Data
 @Entity(name = "usuario")
 public class User implements Serializable {
 
-  private static final Long serialVersionUID = 1L;
+@SuppressWarnings("unused")
+private static final Long serialVersionUID = 1L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +27,7 @@ public class User implements Serializable {
 
   @Column(nullable = false)
   private String password;
+  
+  @Column(nullable = false)
+  private Perfil perfil;
 }

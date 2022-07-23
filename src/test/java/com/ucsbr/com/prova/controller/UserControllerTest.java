@@ -64,5 +64,15 @@ public class UserControllerTest {
     return mapper.writeValueAsString(dto);
 
   }
+  
+  public String delete() throws JsonProcessingException {
+	    UserDTO dto = new UserDTO();
+	    dto.setNome(NAME);
+	    dto.setEmail(EMAIL);
+	    dto.setLogin(LOGIN);
+	    ObjectMapper mapper = new ObjectMapper();
+	    return mapper.writeValueAsString(dto);
+
+	  }
 
 }

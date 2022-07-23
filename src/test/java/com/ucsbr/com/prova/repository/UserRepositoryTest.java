@@ -7,25 +7,26 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Optional;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserRepositoryTest {
 
   private static final String EMAIL = "samuluc1@gmail.com";
-
+  private User u = new User();
+  
   @Autowired
   UserRepository repository;
 
   @Before
   public void setUp(){
-    User u = new User();
     u.setEmail("samuluc1@gmail.com");
     u.setLogin("samuluc");
     u.setPassword("1234");
@@ -58,6 +59,20 @@ public class UserRepositoryTest {
     assertTrue(response.isPresent());
     assertEquals(response.get().getEmail(), EMAIL);
   }
-
+  
+  @Test
+  public void deleteUser(){
+	setUp();
+	repository.delete(u);   
+    verify(repository, times(1)).delete(u); 
+  }
+  
+  @Test
+  public void deleteUserByEmail(){
+	setUp();	
+	Optional<User> user = repository.findByEmailEquals("jhon@net.com");   
+	repository.delete(user.get());   
+    verify(repository, times(1)).delete(u); 
+  }
 
 }
